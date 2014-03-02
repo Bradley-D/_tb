@@ -27,16 +27,35 @@
 					
 				<?php $header_image = get_header_image();
 				if ( ! empty( $header_image ) ) { ?>
-					<a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home">
-						<img src="<?php header_image(); ?>" width="<?php echo get_custom_header()->width; ?>" height="<?php echo get_custom_header()->height; ?>" alt="">
-					</a>
+					<!-- WP Custom Header -->
+          <div id="title-description">
+            <?php $heading_main = ( is_home() || is_front_page() ) ? 'h1' : 'div'; ?>
+              <<?php echo $heading_main; ?> id="site-title">
+                <?php bloginfo( 'name' ); ?>
+              </<?php echo $heading_main; ?>>
+
+            <?php $heading_sub = ( is_home() || is_front_page() ) ? 'h4' : 'div'; ?>
+            	<<?php echo $heading_sub; ?> id="site-description">
+             		<?php bloginfo( 'description' ); ?>
+            	</<?php echo $heading_main; ?>>
+          </div><!-- ENDS #title-description -->
+
+          <div class="row">
+	          <div id="logo" class="col-xs-12 col-md-7">
+	              <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="logo" rel="home">
+	                <img src="<?php header_image(); ?>" height="<?php echo get_custom_header()->height; ?>" width="<?php echo get_custom_header()->width; ?>" alt="" />
+	              </a>
+	          </div>
+	          <!-- END WP Custom Header -->
+
+	          <div class="header-widget col-xs-12 col-md-5">
+	          	<?php if ( is_active_sidebar( 'header' ) ) : ?>
+								<?php dynamic_sidebar( 'header' ); ?>
+							<?php endif; ?>
+	          </div><!-- ENDS .header-widget -->
+        	</row>
+
 				<?php } // end if ( ! empty( $header_image ) ) ?>
-				
-				
-				<div class="site-branding">
-					<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
-					<h4 class="site-description"><?php bloginfo( 'description' ); ?></h4>
-				</div>
 						
 			</div>
 		</div>
