@@ -24,39 +24,47 @@
 	<div class="container">
 		<div class="row">
 			<div class="site-header-inner col-sm-12">
-					
-				<?php $header_image = get_header_image();
-				if ( ! empty( $header_image ) ) { ?>
-					<!-- WP Custom Header -->
-          <div id="title-description">
-            <?php $heading_main = ( is_home() || is_front_page() ) ? 'h1' : 'div'; ?>
-              <<?php echo $heading_main; ?> id="site-title">
-                <?php bloginfo( 'name' ); ?>
-              </<?php echo $heading_main; ?>>
+				<div class="row">
+					<?php $header_image = get_header_image();
+					if ( ! empty( $header_image ) ) { ?>
 
-            <?php $heading_sub = ( is_home() || is_front_page() ) ? 'h4' : 'div'; ?>
-            	<<?php echo $heading_sub; ?> id="site-description">
-             		<?php bloginfo( 'description' ); ?>
-            	</<?php echo $heading_main; ?>>
-          </div><!-- ENDS #title-description -->
+	          <div id="title-description">
+	            <?php $heading_main = ( is_home() || is_front_page() ) ? 'h1' : 'div'; ?>
+	              <<?php echo $heading_main; ?> id="site-title">
+	                <?php bloginfo( 'name' ); ?>
+	              </<?php echo $heading_main; ?>>
 
-          <div class="row">
+	            <?php $heading_sub = ( is_home() || is_front_page() ) ? 'h4' : 'div'; ?>
+	            	<<?php echo $heading_sub; ?> id="site-description">
+	             		<?php bloginfo( 'description' ); ?>
+	            	</<?php echo $heading_main; ?>>
+	          </div><!-- ENDS #title-description -->
+	          
 	          <div id="logo" class="col-xs-12 col-md-7">
 	              <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="logo" rel="home">
 	                <img src="<?php header_image(); ?>" height="<?php echo get_custom_header()->height; ?>" width="<?php echo get_custom_header()->width; ?>" alt="" />
 	              </a>
-	          </div>
-	          <!-- END WP Custom Header -->
+	          </div><!-- ENDS #logo -->
+
+		          <?php 
+	      	} else { ?>
+
+						<div class="site-branding col-xs-12 col-md-7">
+							<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
+							<h4 class="site-description"><?php bloginfo( 'description' ); ?></h4>
+						</div>
+
+						<?php 
+					} ?>
 
 	          <div class="header-widget col-xs-12 col-md-5">
 	          	<?php if ( is_active_sidebar( 'header' ) ) : ?>
 								<?php dynamic_sidebar( 'header' ); ?>
 							<?php endif; ?>
 	          </div><!-- ENDS .header-widget -->
-        	</row>
+      	</row>
 
-				<?php } // end if ( ! empty( $header_image ) ) ?>
-						
+
 			</div>
 		</div>
 	</div><!-- .container -->
