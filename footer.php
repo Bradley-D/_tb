@@ -44,8 +44,10 @@
 					</div><!-- ENDS .footer-widget-4 -->
 				</div>
 				<div class="site-info">
-					<?php do_action( '_glse_credits' ); ?>
-					<?php printf( __( 'Crafted By: %1$s', '_glse' ), 'Bradley Davis - <a href="http://bradley-davis.com" rel="designer">WordPress Developer</a>' ); ?>
+					<?php do_action( '_tb_credits' ); ?>
+					<a href="http://wordpress.org/" title="<?php esc_attr_e( 'A Semantic Personal Publishing Platform', '_tb' ); ?>" rel="generator"><?php printf( __( 'Powered by %s', '_tb' ), 'WordPress' ); ?></a>
+					<?php _e( ' | ', '_tb' ); ?>
+					<?php printf( __( 'Theme: %1$s by %2$s.', '_tb' ), '_tb', '<a title="WordPress Developer" href="http://bradley-davis.com/">Bradley Davis</a>' ); ?>
 				</div><!-- close .site-info -->
 			
 			</div>	
