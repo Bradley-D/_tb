@@ -16,12 +16,36 @@
 	<div class="container">
 		<div class="row">
 			<div class="site-footer-inner col-sm-12">
-			
+				<div class="footer-widget-full">
+					<?php if ( is_active_sidebar( 'footer-full' ) ) : ?>
+						<?php dynamic_sidebar( 'footer-full' ); ?>
+					<?php endif; ?>
+				</div><!-- ENDS .footer-widget-full -->
+				<div class="row">
+					<div class="footer-widget-1 col-md-3">
+						<?php if ( is_active_sidebar( 'footer-1' ) ) : ?>
+							<?php dynamic_sidebar( 'footer-1' ); ?>
+						<?php endif; ?>
+					</div><!-- ENDS .footer-widget-1 -->
+					<div class="footer-widget-2 col-md-3">
+						<?php if ( is_active_sidebar( 'footer-2' ) ) : ?>
+								<?php dynamic_sidebar( 'footer-2' ); ?>
+							<?php endif; ?>
+					</div><!-- ENDS .footer-widget-2 -->
+					<div class="footer-widget-3 col-md-3">
+						<?php if ( is_active_sidebar( 'footer-3' ) ) : ?>
+							<?php dynamic_sidebar( 'footer-3' ); ?>
+						<?php endif; ?>
+					</div><!-- ENDS .footer-widget-3 -->
+					<div class="footer-widget-4 col-md-3">
+						<?php if ( is_active_sidebar( 'footer-4' ) ) : ?>
+							<?php dynamic_sidebar( 'footer-4' ); ?>
+						<?php endif; ?>
+					</div><!-- ENDS .footer-widget-4 -->
+				</div>
 				<div class="site-info">
-					<?php do_action( '_tb_credits' ); ?>
-					<a href="http://wordpress.org/" title="<?php esc_attr_e( 'A Semantic Personal Publishing Platform', '_tb' ); ?>" rel="generator"><?php printf( __( 'Proudly powered by %s', '_tb' ), 'WordPress' ); ?></a>
-					<span class="sep"> | </span>
-					<?php printf( __( 'Theme: %1$s by %2$s.', '_tb' ), '_tb', '<a href="http://underscores.me/" rel="designer">Underscores.me</a>' ); ?>
+					<?php do_action( '_glse_credits' ); ?>
+					<?php printf( __( 'Crafted By: %1$s', '_glse' ), 'Bradley Davis - <a href="http://bradley-davis.com" rel="designer">WordPress Developer</a>' ); ?>
 				</div><!-- close .site-info -->
 			
 			</div>	
