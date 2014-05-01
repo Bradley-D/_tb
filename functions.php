@@ -3,6 +3,7 @@
  * _tb functions and definitions
  *
  * @package _tb
+ * @version 1.0
  */
 
 /**
@@ -19,57 +20,73 @@ if ( ! function_exists( '_tb_setup' ) ) :
  * before the init hook. The init hook is too late for some features, such as indicating
  * support post thumbnails.
  */
-function _tb_setup() {
-    global $cap, $content_width;
+	function _tb_setup() {
+	  global $cap, $content_width, $wp_version;
 
-    // This theme styles the visual editor with editor-style.css to match the theme style.
-    add_editor_style();
+	  // This theme styles the visual editor with editor-style.css to match the theme style.
+	  add_editor_style();
 
-    if ( function_exists( 'add_theme_support' ) ) {
+	  if ( function_exists( 'add_theme_support' ) ) {
+
+			/**
+			 * Add default posts and comments RSS feed links to head
+			*/
+			if ( version_compare( $wp_version, '3.0', '>=' ) ) :
+				add_theme_support( 'automatic-feed-links' );
+			else :
+				automatic_feed_links();
+			endif;
+			
+			/**
+			 * Enable support for Post Thumbnails on posts and pages
+			 *
+			 * @link http://codex.wordpress.org/Function_Reference/add_theme_support#Post_Thumbnails
+			*/
+			add_theme_support( 'post-thumbnails' );
+			
+			/**
+			 * Enable support for Post Formats
+			*/
+			add_theme_support( 'post-formats', array( 'aside', 'image', 'video', 'quote', 'link' ) );
+			
+			/**
+			 * Setup the WordPress core custom background feature.
+			*/
+			add_theme_support( 'custom-background', apply_filters( '_tb_custom_background_args', array(
+				'default-color' => 'ffffff',
+				'default-image' => '',
+			) ) );
+
+	  }
 
 		/**
-		 * Add default posts and comments RSS feed links to head
+		 * Make theme available for translation
+		 * Translations can be filed in the /languages/ directory
+		 * If you're building a theme based on _tb, use a find and replace
+		 * to change '_tb' to the name of your theme in all the template files
 		*/
-		add_theme_support( 'automatic-feed-links' );
-		
-		/**
-		 * Enable support for Post Thumbnails on posts and pages
-		 *
-		 * @link http://codex.wordpress.org/Function_Reference/add_theme_support#Post_Thumbnails
-		*/
-		add_theme_support( 'post-thumbnails' );
-		
-		/**
-		 * Enable support for Post Formats
-		*/
-		add_theme_support( 'post-formats', array( 'aside', 'image', 'video', 'quote', 'link' ) );
-		
-		/**
-		 * Setup the WordPress core custom background feature.
-		*/
-		add_theme_support( 'custom-background', apply_filters( '_tb_custom_background_args', array(
-			'default-color' => 'ffffff',
-			'default-image' => '',
-		) ) );
-	
-    }
+		load_theme_textdomain( '_tb', get_template_directory() . '/languages' );
 
-	/**
-	 * Make theme available for translation
-	 * Translations can be filed in the /languages/ directory
-	 * If you're building a theme based on _tb, use a find and replace
-	 * to change '_tb' to the name of your theme in all the template files
-	*/
-	load_theme_textdomain( '_tb', get_template_directory() . '/languages' );
+		/**
+		 * This theme uses wp_nav_menu() in one location.
+		*/ 
+	    register_nav_menus( array(
+	        'primary'  => __( 'Header bottom menu', '_tb' ),
+	    ) );
 
-	/**
-	 * This theme uses wp_nav_menu() in one location.
-	*/ 
-    register_nav_menus( array(
-        'primary'  => __( 'Header bottom menu', '_tb' ),
-    ) );
+	    /**
+	    * Add theme support for WooCommerce
+	    */
+			add_theme_support( 'woocommerce' );
 
-}
+			/**
+			 * Check if WooCommerce is active
+			 **/
+			if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
+			    require 'includes/tb-wc-functions.php';
+			}
+
+	}
 endif; // _tb_setup
 add_action( 'after_setup_theme', '_tb_setup' );
 
