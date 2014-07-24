@@ -1,4 +1,4 @@
-THEME: _tb - Twitter Bootstrap WordPress Theme
+_tb - Twitter Bootstrap WordPress Theme
 ===============================================================
 _tb is my starter theme based on Twitter Bootstrap 3 and Underscores. 
 
