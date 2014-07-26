@@ -62,7 +62,7 @@
 								<?php dynamic_sidebar( 'header' ); ?>
 							<?php endif; ?>
 	          </div><!-- ENDS .header-widget -->
-      	</row>
+      	</div>
 
 
 			</div>
