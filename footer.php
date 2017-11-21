@@ -7,11 +7,14 @@
  * @package _tb
  */
 ?>
-			</div><!-- close .*-inner (main-content or sidebar, depending if sidebar is used) -->
-		</div><!-- close .row -->
 	</div><!-- close .container -->
-</div><!-- close .main-content -->
+</div><!-- close .main-content --><?php
 
+if ( is_page_template( 'no-sidebar.php' ) || is_front_page() ) : ?>
+	<div class="footer-promo container-fluid">
+			<a title="Contact Us" href="/contact-us/">Contact Us <span class="glyphicon glyphicon-send"></span></a>
+	</div><?php
+endif; ?>
 <footer id="colophon" class="site-footer" role="contentinfo">
 	<div class="container">
 		<div class="row">
@@ -45,9 +48,6 @@
 				</div>
 				<div class="site-info">
 					<?php do_action( '_tb_credits' ); ?>
-					<a href="http://wordpress.org/" title="<?php esc_attr_e( 'A Semantic Personal Publishing Platform', '_tb' ); ?>" rel="generator"><?php printf( __( 'Powered by %s', '_tb' ), 'WordPress' ); ?></a>
-					<?php _e( ' | ', '_tb' ); ?>
-					<?php printf( __( 'Theme: %1$s by %2$s.', '_tb' ), '_tb', '<a title="WordPress Developer" href="http://bradley-davis.com/">Bradley Davis</a>' ); ?>
 				</div><!-- close .site-info -->
 			
 			</div>	

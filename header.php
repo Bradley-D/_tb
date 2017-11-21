@@ -23,12 +23,10 @@
 <header id="masthead" class="site-header" role="banner">
 	<div class="container">
 		<div class="row">
-			<div class="site-header-inner col-sm-12">
-				<div class="row">
 					<?php $header_image = get_header_image();
 					if ( ! empty( $header_image ) ) { ?>
 
-	          <div id="title-description">
+	          <div id="title-description" class="header-description">
 	            <?php $heading_main = ( is_home() || is_front_page() ) ? 'h1' : 'div'; ?>
 	              <<?php echo $heading_main; ?> id="site-title">
 	                <?php bloginfo( 'name' ); ?>
@@ -40,7 +38,7 @@
 	            	</<?php echo $heading_main; ?>>
 	          </div><!-- ENDS #title-description -->
 	          
-	          <div id="logo" class="col-xs-12 col-md-7">
+	          <div id="logo" class="col-xs-8 col-xs-offset-2 col-sm-5 col-sm-offset-0 col-md-4">
 	              <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="logo" rel="home">
 	                <img src="<?php header_image(); ?>" height="<?php echo get_custom_header()->height; ?>" width="<?php echo get_custom_header()->width; ?>" alt="" />
 	              </a>
@@ -49,65 +47,47 @@
 		          <?php 
 	      	} else { ?>
 
-						<div class="site-branding col-xs-12 col-md-7">
+						<div class="site-branding col-xs-12 col-sm-7">
 							<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
 							<h4 class="site-description"><?php bloginfo( 'description' ); ?></h4>
 						</div>
 
 						<?php 
 					} ?>
-
-	          <div class="header-widget col-xs-12 col-md-5">
-	          	<?php if ( is_active_sidebar( 'header' ) ) : ?>
-								<?php dynamic_sidebar( 'header' ); ?>
-							<?php endif; ?>
-	          </div><!-- ENDS .header-widget -->
-      	</div>
-
-
-			</div>
+					<nav class="site-navigation">		
+						<div class="site-navigation-inner col-xs-12 col-sm-7">
+							<div class="navbar navbar-default">
+								<div class="navbar-header">
+							    <!-- .navbar-toggle is used as the toggle for collapsed navbar content -->
+							    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+							    	<span class="sr-only">Toggle navigation</span>
+							    	<div class="menu-text-wrapper"><?php _e( 'Navigation' ); ?></div>
+							    	<div class="burger-wrapper">
+								      <span class="icon-bar"></span>
+								      <span class="icon-bar"></span>
+								      <span class="icon-bar"></span>
+							   	 	</div>
+							    </button>
+							  </div>
+							    <!-- The WordPress Menu goes here --><?php 
+							    wp_nav_menu(
+		                array(
+		                    'theme_location' => 'primary',
+		                    'container_class' => 'collapse navbar-collapse navbar-responsive-collapse',
+		                    'menu_class' => 'nav navbar-nav',
+		                    'fallback_cb' => '',
+		                    'menu_id' => 'main-menu',
+		                    'walker' => new wp_bootstrap_navwalker()
+		                )
+				          ); ?>
+							</div><!-- .navbar -->
+						</div>
+					</nav><!-- .site-navigation -->
 		</div>
 	</div><!-- .container -->
 </header><!-- #masthead -->
-		
-<nav class="site-navigation">		
+
+	<?php ssm_feature_image() ?>
+
+<div class="main-content">
 	<div class="container">
-		<div class="row">
-			<div class="site-navigation-inner col-sm-12">
-				<div class="navbar navbar-default">
-					<div class="navbar-header">
-				    <!-- .navbar-toggle is used as the toggle for collapsed navbar content -->
-				    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
-				    	<span class="sr-only">Toggle navigation</span>
-				      <span class="icon-bar"></span>
-				      <span class="icon-bar"></span>
-				      <span class="icon-bar"></span>
-				    </button>
-				
-				    <!-- Your site title as branding in the menu -->
-				    <a class="navbar-brand" href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a>
-				  </div>
-
-			    <!-- The WordPress Menu goes here -->
-	        <?php wp_nav_menu(
-                array(
-                    'theme_location' => 'primary',
-                    'container_class' => 'collapse navbar-collapse navbar-responsive-collapse',
-                    'menu_class' => 'nav navbar-nav',
-                    'fallback_cb' => '',
-                    'menu_id' => 'main-menu',
-                    'walker' => new wp_bootstrap_navwalker()
-                )
-            ); ?>
-				
-				</div><!-- .navbar -->
-			</div>
-		</div>
-	</div><!-- .container -->
-</nav><!-- .site-navigation -->
-
-<div class="main-content">	
-	<div class="container">
-		<div class="row">
-			<div id="content" class="main-content-inner col-sm-12 col-md-8">
-

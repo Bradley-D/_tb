@@ -84,7 +84,7 @@ if ( post_password_required() )
 			
 			  'comment_notes_after' => '<p class="form-allowed-tags">' .
 			   	__( 'You may use these <abbr title="HyperText Markup Language">HTML</abbr> tags and attributes:' ) .
-			  	'</p><div class="alert alert-info">' . allowed_tags() . '</div>' 
+			  	'</p><div class="alert alert-warning">' . allowed_tags() . '</div>' 
 
 			  // So, that was the needed stuff to have bootstrap basic styles for the form elements and buttons 
 

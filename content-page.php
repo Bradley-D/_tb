@@ -5,11 +5,9 @@
  * @package _tb
  */
 ?>
-
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-	<header class="page-header">
-		<h1 class="page-title"><?php the_title(); ?></h1>
-	</header><!-- .entry-header -->
+
+	<?php ssm_display_title(); ?>
 
 	<div class="entry-content">
 		<?php the_content(); ?>
@@ -20,5 +18,4 @@
 			) );
 		?>
 	</div><!-- .entry-content -->
-	<?php edit_post_link( __( 'Edit', '_tb' ), '<footer class="entry-meta"><span class="edit-link">', '</span></footer>' ); ?>
 </article><!-- #post-## -->

@@ -23,6 +23,11 @@ if ( ! function_exists( '_tb_setup' ) ) :
 	function _tb_setup() {
 	  global $cap, $content_width, $wp_version;
 
+	  /*
+	   * Load the custom meta box functions
+	   */
+	  require_once trailingslashit( get_template_directory() ) . 'includes/tb-metaboxes-functions.php';
+
 	  // This theme styles the visual editor with editor-style.css to match the theme style.
 	  add_editor_style();
 
@@ -43,6 +48,7 @@ if ( ! function_exists( '_tb_setup' ) ) :
 			 * @link http://codex.wordpress.org/Function_Reference/add_theme_support#Post_Thumbnails
 			*/
 			add_theme_support( 'post-thumbnails' );
+			add_image_size( 'full-width', 1900, 500 );
 			
 			/**
 			 * Enable support for Post Formats
@@ -164,57 +170,77 @@ add_action( 'widgets_init', '_tb_widgets_init' );
  */
 function _tb_scripts() {
 
-    // load bootstrap css
-    wp_enqueue_style( '_tb-bootstrap', get_template_directory_uri() . '/includes/resources/bootstrap/css/bootstrap.css' );
+	// load Google Fonts
+	wp_enqueue_style( 'google_font', 'http://fonts.googleapis.com/css?family=Raleway:400,700,200' );
 
-    // load _tb styles
-    wp_enqueue_style( '_tb-style', get_stylesheet_uri() );
+  // load bootstrap css
+  wp_enqueue_style( '_tb-bootstrap', get_template_directory_uri() . '/includes/resources/bootstrap/css/bootstrap.css' );
 
-    // load bootstrap js
-    wp_enqueue_script('_tb-bootstrapjs', get_template_directory_uri().'/includes/resources/bootstrap/js/bootstrap.js', array('jquery') );
+  // load _tb styles
+  wp_enqueue_style( '_tb-style', get_stylesheet_uri() );
 
-    // load bootstrap wp js
-    wp_enqueue_script( '_tb-bootstrapwp', get_template_directory_uri() . '/includes/js/bootstrap-wp.js', array('jquery') );
+  // load theme js
+  wp_enqueue_script('_tb-themejs', get_template_directory_uri().'/includes/js/theme.js', array('jquery') );
 
-    wp_enqueue_script( '_tb-skip-link-focus-fix', get_template_directory_uri() . '/includes/js/skip-link-focus-fix.js', array(), '20130115', true );
+  // load quovolver js
+  wp_enqueue_script( '_tb-quovolver', trailingslashit( get_template_directory_uri() ) . 'includes/js/jquery.quovolver.js', array( 'jquery' ) );
 
-    if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
-        wp_enqueue_script( 'comment-reply' );
-    }
+  // load bootstrap js
+  wp_enqueue_script('_tb-bootstrapjs', get_template_directory_uri().'/includes/resources/bootstrap/js/bootstrap.js', array('jquery') );
 
-    if ( is_singular() && wp_attachment_is_image() ) {
-        wp_enqueue_script( '_tb-keyboard-image-navigation', get_template_directory_uri() . '/includes/js/keyboard-image-navigation.js', array( 'jquery' ), '20120202' );
-    }
+  // load bootstrap wp js
+  wp_enqueue_script( '_tb-bootstrapwp', get_template_directory_uri() . '/includes/js/bootstrap-wp.js', array('jquery') );
+
+  wp_enqueue_script( '_tb-skip-link-focus-fix', get_template_directory_uri() . '/includes/js/skip-link-focus-fix.js', array(), '20130115', true );
+
+  if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
+      wp_enqueue_script( 'comment-reply' );
+  }
+
+  if ( is_singular() && wp_attachment_is_image() ) {
+      wp_enqueue_script( '_tb-keyboard-image-navigation', get_template_directory_uri() . '/includes/js/keyboard-image-navigation.js', array( 'jquery' ), '20120202' );
+  }
 
 }
 add_action( 'wp_enqueue_scripts', '_tb_scripts' );
 
+
 /**
  * Implement the Custom Header feature.
  */
-require get_template_directory() . '/includes/custom-header.php';
+require trailingslashit( get_template_directory() ) . 'includes/custom-header.php';
 
 /**
  * Custom template tags for this theme.
  */
-require get_template_directory() . '/includes/template-tags.php';
+require trailingslashit( get_template_directory() ) . 'includes/template-tags.php';
 
 /**
  * Custom functions that act independently of the theme templates.
  */
-require get_template_directory() . '/includes/extras.php';
+require trailingslashit( get_template_directory() ) . 'includes/extras.php';
 
 /**
  * Customizer additions.
  */
-require get_template_directory() . '/includes/customizer.php';
+require trailingslashit( get_template_directory() ) . 'includes/customizer.php';
 
 /**
  * Load Jetpack compatibility file.
  */
-require get_template_directory() . '/includes/jetpack.php';
+require trailingslashit( get_template_directory() ) . 'includes/jetpack.php';
 
 /**
  * Load custom WordPress nav walker.
  */
-require get_template_directory() . '/includes/bootstrap-wp-navwalker.php';
+require trailingslashit( get_template_directory() ) . 'includes/bootstrap-wp-navwalker.php';
+
+/**
+ * Load custom post types
+ */
+require trailingslashit( get_template_directory() ) . 'includes/custom-post-type.php';
+
+/**
+ * Load custom functions
+ */
+require trailingslashit( get_template_directory() ) . 'includes/custom-functions.php'; 
