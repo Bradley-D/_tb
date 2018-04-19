@@ -3,12 +3,6 @@ _tb - Twitter Bootstrap WordPress Theme
 _tb is my starter theme based on Twitter Bootstrap 3 and Underscores. 
 
 ===============================================================
-DOCUMENTATION
-===============================================================
-Known Conflicts:
-As I test this theme with plugins I will list any plugins that I find create a conflict with part of this theme.
-
-===============================================================
 LOG
 ===============================================================
 1.0
