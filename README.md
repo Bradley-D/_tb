@@ -1,7 +1,9 @@
 === _tb - Twitter Bootstrap WordPress Theme ===
+
 _tb is my starter theme based on Twitter Bootstrap 3 and Underscores. 
 
 === LOG ===
+
 1.0
 23/02/2014
 - Initial Commit
