@@ -108,7 +108,7 @@ function ssm_feature_image() {
 				printf( '<div class="taxonomy-description">%s</div>', $term_description );
 			endif;
 		endif;
-		
+
 	echo '</div></section>';
 }
 
@@ -216,7 +216,7 @@ function ssm_testimonials() {
 						the_content();
 					echo '</blockquote>';
 				echo '</div>';
-			echo '</div>';			
+			echo '</div>';
 		}
 	else :
 		// no posts found
