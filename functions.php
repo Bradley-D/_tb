@@ -23,11 +23,6 @@ if ( ! function_exists( '_tb_setup' ) ) :
 	function _tb_setup() {
 	  global $cap, $content_width, $wp_version;
 
-	  /*
-	   * Load the custom meta box functions
-	   */
-	  require_once trailingslashit( get_template_directory() ) . 'includes/tb-metaboxes-functions.php';
-
 	  // This theme styles the visual editor with editor-style.css to match the theme style.
 	  add_editor_style();
 
@@ -41,7 +36,7 @@ if ( ! function_exists( '_tb_setup' ) ) :
 			else :
 				automatic_feed_links();
 			endif;
-			
+
 			/**
 			 * Enable support for Post Thumbnails on posts and pages
 			 *
@@ -49,12 +44,12 @@ if ( ! function_exists( '_tb_setup' ) ) :
 			*/
 			add_theme_support( 'post-thumbnails' );
 			add_image_size( 'full-width', 1900, 500 );
-			
+
 			/**
 			 * Enable support for Post Formats
 			*/
 			add_theme_support( 'post-formats', array( 'aside', 'image', 'video', 'quote', 'link' ) );
-			
+
 			/**
 			 * Setup the WordPress core custom background feature.
 			*/
@@ -75,7 +70,7 @@ if ( ! function_exists( '_tb_setup' ) ) :
 
 		/**
 		 * This theme uses wp_nav_menu() in one location.
-		*/ 
+		*/
 	    register_nav_menus( array(
 	        'primary'  => __( 'Header bottom menu', '_tb' ),
 	    ) );
@@ -182,9 +177,6 @@ function _tb_scripts() {
   // load theme js
   wp_enqueue_script('_tb-themejs', get_template_directory_uri().'/includes/js/theme.js', array('jquery') );
 
-  // load quovolver js
-  wp_enqueue_script( '_tb-quovolver', trailingslashit( get_template_directory_uri() ) . 'includes/js/jquery.quovolver.js', array( 'jquery' ) );
-
   // load bootstrap js
   wp_enqueue_script('_tb-bootstrapjs', get_template_directory_uri().'/includes/resources/bootstrap/js/bootstrap.js', array('jquery') );
 
@@ -236,11 +228,6 @@ require trailingslashit( get_template_directory() ) . 'includes/jetpack.php';
 require trailingslashit( get_template_directory() ) . 'includes/bootstrap-wp-navwalker.php';
 
 /**
- * Load custom post types
- */
-require trailingslashit( get_template_directory() ) . 'includes/custom-post-type.php';
-
-/**
  * Load custom functions
  */
-require trailingslashit( get_template_directory() ) . 'includes/custom-functions.php'; 
+require trailingslashit( get_template_directory() ) . 'includes/custom-functions.php';

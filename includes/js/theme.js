@@ -11,18 +11,12 @@ jQuery(document).ready(function($) {
 
 	// Logo pulse on scroll
 	$(window).scroll(function() {
-		if ( $( this ).scrollTop() > 1 ) {  
+		if ( $( this ).scrollTop() > 1 ) {
 		    $( '.site-header' ).addClass( 'sticky' );
 	  	}
 	  	else{
 	    	$( '.site-header' ).removeClass( 'sticky' );
 	  	}
-	});
-
-	// Quovolver
-	$( '.testimonials' ).quovolver({
-			autoPlaySpeed : 8000, // this is milliseconds, eg, 6000 = 6 seconds
-			equalHeight : true,
 	});
 
 });
